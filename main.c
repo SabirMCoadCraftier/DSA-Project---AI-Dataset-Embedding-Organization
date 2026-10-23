@@ -199,6 +199,32 @@ void display_graph(void) {
         }
     }
     printf("\n  Total edges: %d\n", edge_count);
+
+    /* ── Vertex Degree Statistics ─────────────────────────────
+     * Degree of a vertex = number of edges connected to it.
+     * For a weighted graph we also show the sum of weights
+     * (total connection cost) for each topic.
+     */
+    printf("\n  Vertex degree statistics:\n");
+    print_divider();
+    printf("  %-32s  Degree  Total Weight\n", "Topic");
+    print_divider();
+    int total_graph_weight = 0;
+    for (int i = 0; i < V; i++) {
+        int degree = 0;
+        int weight_sum = 0;
+        for (int j = 0; j < V; j++) {
+            if (graph[i][j] != 0) {
+                degree++;
+                weight_sum += graph[i][j];
+            }
+        }
+        printf("  %-32s     %d       %d\n", topics[i], degree, weight_sum);
+        total_graph_weight += weight_sum;
+    }
+    /* Each edge is counted twice in the adjacency matrix */
+    printf("\n  Sum of all edge weights (graph total): %d\n",
+           total_graph_weight / 2);
     print_divider();
 }
 
