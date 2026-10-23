@@ -1,0 +1,41 @@
+# ─── Compiled Executables ────────────────────────────────────
+# Windows
+*.exe
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.lib
+
+# Linux / macOS
+a.out
+project
+*.o
+*.out
+
+# ─── Build Directories ───────────────────────────────────────
+build/
+bin/
+obj/
+dist/
+
+# ─── IDE / Editor Junk ───────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ─── OS Artifacts ────────────────────────────────────────────
+desktop.ini
+
+# ─── Temporary Files ─────────────────────────────────────────
+*.tmp
+*.bak
+*.log
+
+# ─── Files to KEEP (negations — do not exclude) ──────────────
+# main.c, README.md, sample_dataset.csv, sample_output.txt
+# CHANGELOG.md are all tracked by Git.

@@ -1,0 +1,366 @@
+﻿
+========================================================
+       AI DATASET EMBEDDING ORGANIZATION                
+       DSA Project  |  Graph Algorithms in C            
+========================================================
+  Welcome! This project demonstrates graph algorithms
+  on 8 AI research topics using an adjacency matrix.
+
+--------------------------------------------------------
+  MAIN MENU
+--------------------------------------------------------
+  1. Display AI Dataset Topics
+  2. Display Graph / Adjacency Matrix
+  3. Run BFS (Breadth-First Search)
+  4. Run DFS (Depth-First Search)
+  5. Run Dijkstra's Shortest Path
+  6. Run Prim's MST
+  7. Run Kruskal's MST
+  8. Compare Prim and Kruskal MST Costs
+  0. Exit
+--------------------------------------------------------
+  Enter your choice: 
+--------------------------------------------------------
+  AI RESEARCH TOPICS IN THIS DATASET
+--------------------------------------------------------
+  1. Machine Learning                
+     Keywords: supervised, unsupervised, regression, classification
+
+  2. Deep Learning                   
+     Keywords: neural networks, backpropagation, CNN, RNN, transformers
+
+  3. Computer Vision                 
+     Keywords: image recognition, object detection, segmentation, OpenCV
+
+  4. Natural Language Processing     
+     Keywords: text processing, tokenization, BERT, GPT, sentiment analysis
+
+  5. Medical AI                      
+     Keywords: disease prediction, medical imaging, drug discovery, EHR
+
+  6. Robotics                        
+     Keywords: autonomous navigation, sensors, control systems, manipulation
+
+  7. Speech Recognition              
+     Keywords: ASR, phonemes, acoustic models, language models, CTC
+
+  8. Recommendation Systems          
+     Keywords: collaborative filtering, matrix factorization, user preferences
+
+--------------------------------------------------------
+
+--------------------------------------------------------
+  MAIN MENU
+--------------------------------------------------------
+  1. Display AI Dataset Topics
+  2. Display Graph / Adjacency Matrix
+  3. Run BFS (Breadth-First Search)
+  4. Run DFS (Depth-First Search)
+  5. Run Dijkstra's Shortest Path
+  6. Run Prim's MST
+  7. Run Kruskal's MST
+  8. Compare Prim and Kruskal MST Costs
+  0. Exit
+--------------------------------------------------------
+  Enter your choice: 
+--------------------------------------------------------
+  WEIGHTED ADJACENCY MATRIX  (0 = no edge)
+--------------------------------------------------------
+        [1] [2] [3] [4] [5] [6] [7] [8]
+  [1]     0    2    4    3    0    0    0    5   <- Machine Learning
+  [2]     2    0    1    3    4    0    2    0   <- Deep Learning
+  [3]     4    1    0    0    5    3    0    0   <- Computer Vision
+  [4]     3    3    0    0    0    0    4    2   <- Natural Language Processing
+  [5]     0    4    5    0    0    6    0    0   <- Medical AI
+  [6]     0    0    3    0    6    0    5    0   <- Robotics
+  [7]     0    2    0    4    0    5    0    3   <- Speech Recognition
+  [8]     5    0    0    2    0    0    3    0   <- Recommendation Systems
+
+  Edge list (topic A -- weight -- topic B):
+--------------------------------------------------------
+  Machine Learning  --[2]--  Deep Learning
+  Machine Learning  --[4]--  Computer Vision
+  Machine Learning  --[3]--  Natural Language Processing
+  Machine Learning  --[5]--  Recommendation Systems
+  Deep Learning  --[1]--  Computer Vision
+  Deep Learning  --[3]--  Natural Language Processing
+  Deep Learning  --[4]--  Medical AI
+  Deep Learning  --[2]--  Speech Recognition
+  Computer Vision  --[5]--  Medical AI
+  Computer Vision  --[3]--  Robotics
+  Natural Language Processing  --[4]--  Speech Recognition
+  Natural Language Processing  --[2]--  Recommendation Systems
+  Medical AI  --[6]--  Robotics
+  Robotics  --[5]--  Speech Recognition
+  Speech Recognition  --[3]--  Recommendation Systems
+
+  Total edges: 15
+--------------------------------------------------------
+
+--------------------------------------------------------
+  MAIN MENU
+--------------------------------------------------------
+  1. Display AI Dataset Topics
+  2. Display Graph / Adjacency Matrix
+  3. Run BFS (Breadth-First Search)
+  4. Run DFS (Depth-First Search)
+  5. Run Dijkstra's Shortest Path
+  6. Run Prim's MST
+  7. Run Kruskal's MST
+  8. Compare Prim and Kruskal MST Costs
+  0. Exit
+--------------------------------------------------------
+  Enter your choice: 
+--------------------------------------------------------
+  AI RESEARCH TOPICS IN THIS DATASET
+--------------------------------------------------------
+  1. Machine Learning                
+     Keywords: supervised, unsupervised, regression, classification
+
+  2. Deep Learning                   
+     Keywords: neural networks, backpropagation, CNN, RNN, transformers
+
+  3. Computer Vision                 
+     Keywords: image recognition, object detection, segmentation, OpenCV
+
+  4. Natural Language Processing     
+     Keywords: text processing, tokenization, BERT, GPT, sentiment analysis
+
+  5. Medical AI                      
+     Keywords: disease prediction, medical imaging, drug discovery, EHR
+
+  6. Robotics                        
+     Keywords: autonomous navigation, sensors, control systems, manipulation
+
+  7. Speech Recognition              
+     Keywords: ASR, phonemes, acoustic models, language models, CTC
+
+  8. Recommendation Systems          
+     Keywords: collaborative filtering, matrix factorization, user preferences
+
+--------------------------------------------------------
+  Enter starting topic number (1-8): 
+  BFS Traversal starting from: Machine Learning
+
+  Traversal order:
+  Machine Learning -> Deep Learning -> Computer Vision -> Natural Language Processing -> Recommendation Systems -> Medical AI -> Speech Recognition -> Robotics
+
+  [BFS explores neighbors level by level -- like ripples in water.]
+  [Time Complexity: O(V^2) with adjacency matrix.]
+
+--------------------------------------------------------
+  MAIN MENU
+--------------------------------------------------------
+  1. Display AI Dataset Topics
+  2. Display Graph / Adjacency Matrix
+  3. Run BFS (Breadth-First Search)
+  4. Run DFS (Depth-First Search)
+  5. Run Dijkstra's Shortest Path
+  6. Run Prim's MST
+  7. Run Kruskal's MST
+  8. Compare Prim and Kruskal MST Costs
+  0. Exit
+--------------------------------------------------------
+  Enter your choice: 
+--------------------------------------------------------
+  AI RESEARCH TOPICS IN THIS DATASET
+--------------------------------------------------------
+  1. Machine Learning                
+     Keywords: supervised, unsupervised, regression, classification
+
+  2. Deep Learning                   
+     Keywords: neural networks, backpropagation, CNN, RNN, transformers
+
+  3. Computer Vision                 
+     Keywords: image recognition, object detection, segmentation, OpenCV
+
+  4. Natural Language Processing     
+     Keywords: text processing, tokenization, BERT, GPT, sentiment analysis
+
+  5. Medical AI                      
+     Keywords: disease prediction, medical imaging, drug discovery, EHR
+
+  6. Robotics                        
+     Keywords: autonomous navigation, sensors, control systems, manipulation
+
+  7. Speech Recognition              
+     Keywords: ASR, phonemes, acoustic models, language models, CTC
+
+  8. Recommendation Systems          
+     Keywords: collaborative filtering, matrix factorization, user preferences
+
+--------------------------------------------------------
+  Enter starting topic number (1-8): 
+  DFS Traversal starting from: Machine Learning
+
+  Traversal order:
+  Machine Learning -> Deep Learning -> Computer Vision -> Medical AI -> Robotics -> Speech Recognition -> Natural Language Processing -> Recommendation Systems
+
+  [DFS goes as deep as possible before backtracking.]
+  [Time Complexity: O(V^2) with adjacency matrix.]
+
+--------------------------------------------------------
+  MAIN MENU
+--------------------------------------------------------
+  1. Display AI Dataset Topics
+  2. Display Graph / Adjacency Matrix
+  3. Run BFS (Breadth-First Search)
+  4. Run DFS (Depth-First Search)
+  5. Run Dijkstra's Shortest Path
+  6. Run Prim's MST
+  7. Run Kruskal's MST
+  8. Compare Prim and Kruskal MST Costs
+  0. Exit
+--------------------------------------------------------
+  Enter your choice: 
+--------------------------------------------------------
+  AI RESEARCH TOPICS IN THIS DATASET
+--------------------------------------------------------
+  1. Machine Learning                
+     Keywords: supervised, unsupervised, regression, classification
+
+  2. Deep Learning                   
+     Keywords: neural networks, backpropagation, CNN, RNN, transformers
+
+  3. Computer Vision                 
+     Keywords: image recognition, object detection, segmentation, OpenCV
+
+  4. Natural Language Processing     
+     Keywords: text processing, tokenization, BERT, GPT, sentiment analysis
+
+  5. Medical AI                      
+     Keywords: disease prediction, medical imaging, drug discovery, EHR
+
+  6. Robotics                        
+     Keywords: autonomous navigation, sensors, control systems, manipulation
+
+  7. Speech Recognition              
+     Keywords: ASR, phonemes, acoustic models, language models, CTC
+
+  8. Recommendation Systems          
+     Keywords: collaborative filtering, matrix factorization, user preferences
+
+--------------------------------------------------------
+  Enter SOURCE topic number (1-8):   Enter DESTINATION topic number (1-8): 
+--------------------------------------------------------
+  DIJKSTRA'S SHORTEST PATH
+  Source     : Machine Learning
+  Destination: Medical AI
+--------------------------------------------------------
+  Shortest path (cost = 6):
+  Machine Learning  -->  Deep Learning  -->  Medical AI
+
+  Step-by-step edge costs:
+    Machine Learning  --[2]-->  Deep Learning
+    Deep Learning  --[4]-->  Medical AI
+    Total cost: 6
+--------------------------------------------------------
+  [Time Complexity: O(V^2) -- simple array-based Dijkstra.]
+
+--------------------------------------------------------
+  MAIN MENU
+--------------------------------------------------------
+  1. Display AI Dataset Topics
+  2. Display Graph / Adjacency Matrix
+  3. Run BFS (Breadth-First Search)
+  4. Run DFS (Depth-First Search)
+  5. Run Dijkstra's Shortest Path
+  6. Run Prim's MST
+  7. Run Kruskal's MST
+  8. Compare Prim and Kruskal MST Costs
+  0. Exit
+--------------------------------------------------------
+  Enter your choice: 
+--------------------------------------------------------
+  PRIM'S MINIMUM SPANNING TREE
+--------------------------------------------------------
+  MST Edges selected:
+    Machine Learning  --[2]--  Deep Learning
+    Deep Learning  --[1]--  Computer Vision
+    Deep Learning  --[2]--  Speech Recognition
+    Machine Learning  --[3]--  Natural Language Processing
+    Natural Language Processing  --[2]--  Recommendation Systems
+    Computer Vision  --[3]--  Robotics
+    Deep Learning  --[4]--  Medical AI
+
+  Total MST Weight (Prim): 17
+--------------------------------------------------------
+  [Prim grows the MST one vertex at a time from the start node.]
+  [Time Complexity: O(V^2) with adjacency matrix.]
+
+--------------------------------------------------------
+  MAIN MENU
+--------------------------------------------------------
+  1. Display AI Dataset Topics
+  2. Display Graph / Adjacency Matrix
+  3. Run BFS (Breadth-First Search)
+  4. Run DFS (Depth-First Search)
+  5. Run Dijkstra's Shortest Path
+  6. Run Prim's MST
+  7. Run Kruskal's MST
+  8. Compare Prim and Kruskal MST Costs
+  0. Exit
+--------------------------------------------------------
+  Enter your choice: 
+--------------------------------------------------------
+  KRUSKAL'S MINIMUM SPANNING TREE
+--------------------------------------------------------
+  Sorted edges considered:
+    [ADDED]  Deep Learning  --[1]--  Computer Vision
+    [ADDED]  Machine Learning  --[2]--  Deep Learning
+    [ADDED]  Deep Learning  --[2]--  Speech Recognition
+    [ADDED]  Natural Language Processing  --[2]--  Recommendation Systems
+    [ADDED]  Machine Learning  --[3]--  Natural Language Processing
+    [SKIP]   Deep Learning  --[3]--  Natural Language Processing  (would form cycle)
+    [ADDED]  Computer Vision  --[3]--  Robotics
+    [SKIP]   Speech Recognition  --[3]--  Recommendation Systems  (would form cycle)
+    [SKIP]   Machine Learning  --[4]--  Computer Vision  (would form cycle)
+    [ADDED]  Deep Learning  --[4]--  Medical AI
+
+  Total MST Weight (Kruskal): 17
+--------------------------------------------------------
+  [Kruskal greedily picks the cheapest edge that doesn't form a cycle.]
+  [Time Complexity: O(E^2) due to bubble sort.]
+
+--------------------------------------------------------
+  MAIN MENU
+--------------------------------------------------------
+  1. Display AI Dataset Topics
+  2. Display Graph / Adjacency Matrix
+  3. Run BFS (Breadth-First Search)
+  4. Run DFS (Depth-First Search)
+  5. Run Dijkstra's Shortest Path
+  6. Run Prim's MST
+  7. Run Kruskal's MST
+  8. Compare Prim and Kruskal MST Costs
+  0. Exit
+--------------------------------------------------------
+  Enter your choice: 
+--------------------------------------------------------
+  COMPARING PRIM vs KRUSKAL MST
+--------------------------------------------------------
+  Prim's    MST Total Weight : 17
+  Kruskal's MST Total Weight : 17
+
+  [OK] Both algorithms give the SAME MST cost: 17
+  This is expected! For a connected graph with unique edge
+  weights, there is exactly one MST and both algorithms find it.
+--------------------------------------------------------
+
+--------------------------------------------------------
+  MAIN MENU
+--------------------------------------------------------
+  1. Display AI Dataset Topics
+  2. Display Graph / Adjacency Matrix
+  3. Run BFS (Breadth-First Search)
+  4. Run DFS (Depth-First Search)
+  5. Run Dijkstra's Shortest Path
+  6. Run Prim's MST
+  7. Run Kruskal's MST
+  8. Compare Prim and Kruskal MST Costs
+  0. Exit
+--------------------------------------------------------
+  Enter your choice: 
+  Thank you for using the AI Dataset Embedding Organizer!
+  Goodbye.
+

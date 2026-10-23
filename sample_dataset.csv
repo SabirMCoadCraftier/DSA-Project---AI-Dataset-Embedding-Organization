@@ -1,0 +1,9 @@
+id,topic_name,short_name,keywords
+1,Machine Learning,ML,"supervised, unsupervised, regression, classification, decision trees, SVM, k-means"
+2,Deep Learning,DL,"neural networks, backpropagation, CNN, RNN, LSTM, transformers, attention"
+3,Computer Vision,CV,"image recognition, object detection, segmentation, OpenCV, GANs, image processing"
+4,Natural Language Processing,NLP,"text processing, tokenization, BERT, GPT, sentiment analysis, embeddings, named entity recognition"
+5,Medical AI,MedAI,"disease prediction, medical imaging, drug discovery, EHR, clinical NLP, diagnostics"
+6,Robotics,ROB,"autonomous navigation, sensors, control systems, manipulation, path planning, SLAM"
+7,Speech Recognition,SR,"ASR, phonemes, acoustic models, language models, CTC, Wav2Vec, Whisper"
+8,Recommendation Systems,RS,"collaborative filtering, matrix factorization, user preferences, content-based filtering, hybrid systems"
