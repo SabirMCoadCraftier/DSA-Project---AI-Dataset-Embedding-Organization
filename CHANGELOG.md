@@ -9,6 +9,46 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [1.1.0] — 2026-10-24
+
+### Added
+- **Floyd-Warshall all-pairs shortest path** as menu option 9.
+  Computes shortest distances between every pair of the 8 topics using
+  O(V³) dynamic programming. Prints a formatted 8×8 distance table.
+  Cross-verified: `dist[0][4]` = 6 matches Dijkstra (ML → Medical AI).
+- **Vertex degree statistics** shown after the adjacency matrix edge list
+  (option 2). Displays degree (number of neighbours) and total edge-weight
+  sum per topic, plus sum of all graph edges.
+- **Startup graph connectivity validator** (`check_graph_connected()`):
+  BFS-based check that confirms all 8 vertices are reachable before the
+  menu appears. Prints `[OK]` or `[WARNING]` accordingly.
+- **`ALGORITHMS.md`** — comprehensive beginner reference covering all six
+  algorithms with pseudocode, data structure explanations, real-world
+  analogies, and a full complexity summary table.
+- **`CHANGELOG.md`** — this file; documents project history and planned work.
+
+### Fixed
+- **`select_topic()` EOF handling** — previously used `!read_int()` which
+  conflated EOF (rc==-1) with bad-format input (rc==0), sometimes printing
+  a misleading "invalid input" message on Ctrl+D / Ctrl+Z.  
+  Now returns -2 on EOF; all callers use `if (start < 0) break` to handle
+  both -1 and -2 cleanly.
+
+### Changed
+- **Menu expanded from 8 to 9 options** (0 to 9).
+- **`default` case error message** updated from "0 to 8" to "0 to 9".
+- **README.md** updated to reflect all new features, algorithm table,
+  project structure, and complexity table.
+
+### Verified
+- All 5 original algorithms still produce correct results.
+- Prim MST = Kruskal MST = **17** ✅
+- Dijkstra ML → Medical AI = **6** ✅
+- Floyd-Warshall `dist[0][4]` = **6** ✅ (matches Dijkstra)
+- Zero compiler warnings with `gcc -std=c11 -Wall -Wextra -pedantic`.
+
+---
+
 ## [1.0.0] — 2026-10-24
 
 ### Added
