@@ -697,6 +697,94 @@ void compare_mst(void) {
 }
 
 /* ============================================================
+ *  MENU OPTION 9 : Floyd-Warshall All-Pairs Shortest Path
+ *
+ *  Algorithm idea:
+ *    Dijkstra finds the shortest path FROM one source to all
+ *    others. Floyd-Warshall finds shortest paths between EVERY
+ *    pair of vertices in a single pass.
+ *
+ *    Idea: for each intermediate vertex k (0..V-1),
+ *          for each source i and destination j:
+ *            if going i->k->j is shorter than the known i->j
+ *            distance, update dist[i][j].
+ *
+ *    After V rounds, dist[i][j] holds the shortest path cost
+ *    between every pair (i, j).
+ *
+ *  Time Complexity : O(V^3) — three nested loops, each 0..V-1.
+ *  Space Complexity: O(V^2) — the distance matrix.
+ *
+ *  For V=8: 8^3 = 512 operations. Runs instantly.
+ * ============================================================ */
+void floyd_warshall(void) {
+    /* Step 1: Initialise dist matrix from the adjacency matrix */
+    int dist[V][V];
+
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
+            if (i == j) {
+                dist[i][j] = 0;           /* distance to self = 0 */
+            } else if (graph[i][j] != 0) {
+                dist[i][j] = graph[i][j]; /* direct edge cost     */
+            } else {
+                dist[i][j] = INF;         /* no direct edge       */
+            }
+        }
+    }
+
+    /* Step 2: Try every vertex k as an intermediate "relay" */
+    for (int k = 0; k < V; k++) {
+        for (int i = 0; i < V; i++) {
+            for (int j = 0; j < V; j++) {
+                /* Can we go i -> k -> j cheaper than i -> j directly? */
+                if (dist[i][k] != INF && dist[k][j] != INF) {
+                    if (dist[i][k] + dist[k][j] < dist[i][j]) {
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                    }
+                }
+            }
+        }
+    }
+
+    /* Step 3: Print the full shortest-path distance table */
+    printf("\n");
+    print_divider();
+    printf("  FLOYD-WARSHALL: ALL-PAIRS SHORTEST PATH TABLE\n");
+    printf("  (Each cell = minimum cost between row-topic and column-topic)\n");
+    print_divider();
+
+    /* Column header (topic numbers) */
+    printf("      ");
+    for (int j = 0; j < V; j++) printf(" [%d] ", j + 1);
+    printf("\n");
+    print_divider();
+
+    /* Rows */
+    for (int i = 0; i < V; i++) {
+        printf("  [%d] ", i + 1);
+        for (int j = 0; j < V; j++) {
+            if (dist[i][j] == INF) {
+                printf("  INF ");
+            } else {
+                printf("  %2d  ", dist[i][j]);
+            }
+        }
+        printf(" <- %s\n", topics[i]);
+    }
+
+    print_divider();
+    printf("  How to read: row = source topic, column = destination topic.\n");
+    printf("  Example: row 1, col 5 = shortest cost from\n");
+    printf("           %s to %s = %d\n",
+           topics[0], topics[4], dist[0][4]);
+    printf("\n  [Floyd-Warshall explores ALL pairs simultaneously.]\n");
+    printf("  [Time Complexity: O(V^3). Space Complexity: O(V^2).]\n");
+    printf("  [For V=8: %d^3 = %d iterations total.]\n", V, V * V * V);
+    print_divider();
+}
+
+/* ============================================================
  *  MAIN MENU
  * ============================================================ */
 void print_menu(void) {
@@ -712,6 +800,7 @@ void print_menu(void) {
     printf("  6. Run Prim's MST\n");
     printf("  7. Run Kruskal's MST\n");
     printf("  8. Compare Prim and Kruskal MST Costs\n");
+    printf("  9. Floyd-Warshall All-Pairs Shortest Path\n");
     printf("  0. Exit\n");
     print_divider();
     printf("  Enter your choice: ");
@@ -806,14 +895,20 @@ int main(void) {
                 compare_mst();
                 break;
 
+            case 9:
+                /* Floyd-Warshall -- no extra input needed */
+                floyd_warshall();
+                break;
+
             case 0:
                 printf("\n  Thank you for using the AI Dataset Embedding Organizer!\n");
                 printf("  Goodbye.\n\n");
                 running = 0;
                 break;
 
+
             default:
-                printf("  [!] Invalid choice. Please enter 0 to 8.\n");
+                printf("  [!] Invalid choice. Please enter 0 to 9.\n");
                 break;
         }
     }
