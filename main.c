@@ -103,6 +103,44 @@ void print_banner(void) {
 }
 
 /*
+ * check_graph_connected()
+ * ──────────────────────
+ * Uses an internal BFS from vertex 0 to verify that every vertex in the
+ * graph is reachable. Returns 1 if connected, 0 if any vertex is isolated.
+ *
+ * This is called once at program startup so the user is immediately
+ * informed if the hardcoded adjacency matrix has a disconnected vertex
+ * (which would make Prim/Kruskal produce incomplete spanning trees).
+ *
+ * Time Complexity: O(V^2) — same BFS with adjacency matrix.
+ */
+int check_graph_connected(void) {
+    int visited[V];
+    int queue[V];
+    int front = 0, rear = 0;
+
+    for (int i = 0; i < V; i++) visited[i] = 0;
+
+    visited[0] = 1;
+    queue[rear++] = 0;
+
+    while (front < rear) {
+        int cur = queue[front++];
+        for (int j = 0; j < V; j++) {
+            if (graph[cur][j] != 0 && !visited[j]) {
+                visited[j] = 1;
+                queue[rear++] = j;
+            }
+        }
+    }
+
+    /* Count reachable vertices */
+    int reachable = 0;
+    for (int i = 0; i < V; i++) reachable += visited[i];
+    return reachable == V;  /* 1 = connected, 0 = disconnected */
+}
+
+/*
  * Safe integer input using fgets + strtol.
  * Returns  1  on success (valid integer read).
  * Returns  0  on bad/non-numeric input (show error, keep looping).
@@ -686,6 +724,13 @@ int main(void) {
     print_banner();
     printf("  Welcome! This project demonstrates graph algorithms\n");
     printf("  on 8 AI research topics using an adjacency matrix.\n");
+
+    /* Startup sanity check: confirm all 8 vertices are connected */
+    if (check_graph_connected()) {
+        printf("  [OK] Graph connectivity verified: all %d topics reachable.\n", V);
+    } else {
+        printf("  [WARNING] Graph is DISCONNECTED. Some algorithms may be incorrect.\n");
+    }
 
     int running = 1;
 
