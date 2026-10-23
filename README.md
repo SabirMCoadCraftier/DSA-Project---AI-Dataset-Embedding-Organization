@@ -1,6 +1,6 @@
 # AI Dataset Embedding Organization
 
-> **A beginner-friendly DSA project in C** — representing 8 AI research topics as a weighted undirected graph and applying five classic graph algorithms.
+> **A beginner-friendly DSA project in C** — representing 8 AI research topics as a weighted undirected graph and applying **six** classic graph algorithms.
 
 ---
 
@@ -30,7 +30,7 @@
 
 This project models a small collection of **AI research topics** as a **weighted, undirected graph**. Each topic (Machine Learning, Deep Learning, Computer Vision, etc.) is a **vertex**, and a connection between two related topics is an **edge**. The weight of an edge represents an illustrative "connection cost" — a lower weight means the two topics share a closer relationship in this prototype.
 
-Five foundational graph algorithms are implemented in pure C (C11 standard):
+Six foundational graph algorithms are implemented in pure C (C11 standard):
 
 | Algorithm | Purpose |
 |-----------|---------|
@@ -39,6 +39,7 @@ Five foundational graph algorithms are implemented in pure C (C11 standard):
 | Dijkstra | Find the minimum-cost path between any two topics |
 | Prim | Build a Minimum Spanning Tree (MST) starting from one topic |
 | Kruskal | Build a Minimum Spanning Tree (MST) by greedily adding cheapest edges |
+| Floyd-Warshall | Find shortest paths between ALL pairs of topics in one pass |
 
 ---
 
@@ -135,15 +136,18 @@ Total: **15 edges**, all vertices connected.
 
 ## Features
 
-- ✅ Interactive console menu (options 0–8)
+- ✅ Interactive console menu (options 0–9)
 - ✅ Display all topics with keywords
 - ✅ Display the adjacency matrix and edge list
+- ✅ **Vertex degree statistics** shown below the edge list (degree, weight sum per topic)
+- ✅ **Startup connectivity check**: BFS-based validator confirms all 8 topics reachable before the menu appears
 - ✅ BFS traversal from a user-selected topic
 - ✅ DFS traversal from a user-selected topic
 - ✅ Dijkstra's shortest path with full path reconstruction
 - ✅ Prim's MST with edge-by-edge output
 - ✅ Kruskal's MST showing accepted and skipped edges
 - ✅ Side-by-side MST cost comparison (Prim vs Kruskal)
+- ✅ **Floyd-Warshall** all-pairs shortest path table (option 9)
 - ✅ Safe input validation (non-numeric input, out-of-range values, EOF)
 - ✅ Zero compiler warnings with `-Wall -Wextra -pedantic`
 
@@ -227,6 +231,8 @@ Total: **15 edges**, all vertices connected.
 | Dijkstra | O(V²) | O(V) | Simple array, no priority queue |
 | Prim | O(V²) | O(V) | Simple array, no priority queue |
 | Kruskal | O(E²) | O(E + V) | Bubble sort dominates; E=15 here |
+| Floyd-Warshall | O(V³) | O(V²) | 8³=512 iterations; dist matrix |
+| Connectivity Check | O(V²) | O(V) | BFS-based, runs once at startup |
 
 > **Note:** With V=8 and E=15, all algorithms run essentially instantaneously. The complexity matters more as graphs grow larger.
 
@@ -418,18 +424,19 @@ Even if some weights were equal (non-unique), both algorithms would still produc
 
 6. **Graph visualization.** Output the graph in DOT format for rendering with Graphviz.
 
-7. **Multiple source Dijkstra.** Compute shortest paths from every vertex to every other vertex (all-pairs shortest path using Floyd-Warshall).
-
 ---
 
 ## Project Structure
 
 ```
 DSA Project - 2.2/
-├── main.c             <- Complete C source code (all algorithms in one file)
-├── README.md          <- This documentation file
-├── sample_output.txt  <- Representative terminal output for reference
-└── sample_dataset.csv <- Dataset of AI topic names and keywords
+├── main.c             <- Complete C source code (all 6 algorithms in one file)
+├── README.md          <- Project documentation (this file)
+├── ALGORITHMS.md      <- Beginner reference: pseudocode + complexity for all 6 algorithms
+├── CHANGELOG.md       <- Project version history and planned features
+├── sample_output.txt  <- Representative terminal output for all 9 menu options
+├── sample_dataset.csv <- Dataset of AI topic names and keywords
+└── .gitignore         <- Excludes compiled binaries (*.exe, *.o) and IDE artifacts
 ```
 
 ---
