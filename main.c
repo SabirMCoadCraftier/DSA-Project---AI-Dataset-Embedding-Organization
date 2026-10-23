@@ -168,12 +168,25 @@ int read_int(int *out) {
 
 /*
  * Ask the user to select a topic (1..V).
- * Returns the 0-based index, or -1 on invalid input.
+ * Returns the 0-based index on success.
+ * Returns -1 on invalid/out-of-range input (caller shows menu again).
+ * Returns -2 on EOF (Ctrl+D / Ctrl+Z) so the caller can exit cleanly.
+ *
+ * Before this fix, select_topic used !read_int() which treated both
+ * bad-format (rc==0) and EOF (rc==-1) identically, potentially
+ * printing a confusing "invalid input" message on EOF.
  */
 int select_topic(const char *prompt) {
     printf("%s (1-%d): ", prompt, V);
     int choice = 0;
-    if (!read_int(&choice)) {
+    int rc = read_int(&choice);
+
+    if (rc == -1) {
+        /* EOF — signal the caller to exit */
+        printf("\n  [EOF] Input closed. Returning to menu.\n");
+        return -2;
+    }
+    if (rc == 0) {
         printf("  [!] Invalid input. Please enter a number.\n");
         return -1;
     }
@@ -852,7 +865,7 @@ int main(void) {
                 /* BFS -- ask for starting topic */
                 display_topics();
                 int start = select_topic("  Enter starting topic number");
-                if (start == -1) break;
+                if (start < 0) break;  /* -1 = bad input, -2 = EOF */
                 bfs(start);
                 break;
             }
@@ -861,7 +874,7 @@ int main(void) {
                 /* DFS -- ask for starting topic */
                 display_topics();
                 int start = select_topic("  Enter starting topic number");
-                if (start == -1) break;
+                if (start < 0) break;  /* -1 = bad input, -2 = EOF */
                 dfs(start);
                 break;
             }
@@ -870,9 +883,9 @@ int main(void) {
                 /* Dijkstra -- ask for source and destination */
                 display_topics();
                 int src = select_topic("  Enter SOURCE topic number");
-                if (src == -1) break;
+                if (src < 0) break;  /* -1 = bad input, -2 = EOF */
                 int dest = select_topic("  Enter DESTINATION topic number");
-                if (dest == -1) break;
+                if (dest < 0) break;
                 if (src == dest) {
                     printf("  [!] Source and destination are the same. Cost = 0.\n");
                     break;
